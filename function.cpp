@@ -41,11 +41,13 @@ void function::estimate(double a, double b, double max_error,
             {
                 b = middle;
                 middle = (a + b) / 2.0l;
+                f_of_b = f_middle;
             }
             else
             {
                 a = middle;
                 middle = (a + b) / 2.0l;
+                f_of_a = f_middle;
             }
             error = b - middle;
 
@@ -56,8 +58,6 @@ void function::estimate(double a, double b, double max_error,
 #endif
 
             expr.evaluateAt(middle, f_middle);
-            expr.evaluateAt(a, f_of_a);
-            expr.evaluateAt(b, f_of_b);
             result_iteration.push_back(std::pair<double, double>(error, middle));
         }
     }
